@@ -7,6 +7,9 @@
   "engines": {
     "node": "^10.0.0"
   },
+  "bin": {
+    "generate": "./index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,6 +21,7 @@
   "author": "Rob Pataki [robert@robertpataki.com]",
   "license": "ISC",
   "dependencies": {
+    "fs-extra": "^9.0.0",
     "prompts": "^2.3.2",
     "yargs": "^15.3.1"
   }

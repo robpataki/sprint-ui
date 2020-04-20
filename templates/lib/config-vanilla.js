@@ -12,8 +12,7 @@ module.exports = (() => {
       images: `${SOURCE_PATH}/assets/images/**/*.*`,
       htmlPages: `${SOURCE_PATH}/html/pages/**/*.+(html|nunjucks|njk)`,
       html: `${SOURCE_PATH}/html/**/*.+(html|nunjucks|njk)`,
-      nunjucks: `${SOURCE_PATH}/html/templates`,
-      nhsukAssets: `./node_modules/nhsuk-frontend/packages/assets/**/*`
+      nunjucks: `${SOURCE_PATH}/html/templates`
     },
 
     destination: {
@@ -22,8 +21,7 @@ module.exports = (() => {
       fonts: `${DESTINATION_PATH}/assets/fonts`,
       js: `${DESTINATION_PATH}/assets/js`,
       images: `${DESTINATION_PATH}/assets/images`,
-      html: `${DESTINATION_PATH}`,
-      nhsukAssets: `${DESTINATION_PATH}/assets`
+      html: `${DESTINATION_PATH}`
     }
   };
 

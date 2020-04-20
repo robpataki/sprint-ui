@@ -1,0 +1,49 @@
+{
+  "name": "${name}",
+  "version": "1.0.0",
+  "description": "${description}",
+  "engines": {
+    "node": "^10.0.0"
+  },
+  "scripts": {
+    "start": "gulp",
+    "dev": "gulp -env=dev",
+    "build-dev": "gulp build -env=dev",
+    "build-prod": "gulp build"
+  },
+  "author": "${author}",
+  "license": "${licence}",
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-minify": "^0.4.3",
+    "babel-preset-env": "^1.7.0",
+    "basic-auth": "^2.0.1",
+    "browser-sync": "^2.26.7",
+    "core-js": "3",
+    "del": "^5.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^4.1.0",
+    "gulp-babel": "^7.0.1",
+    "gulp-csso": "^3.0.1",
+    "gulp-eol": "^0.2.0",
+    "gulp-eslint": "^6.0.0",
+    "gulp-if": "^3.0.0",
+    "gulp-imagemin": "^3.4.0",
+    "gulp-nunjucks-render": "^2.2.3",
+    "gulp-sass": "^3.2.1",
+    "gulp-sass-lint": "^1.4.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify-es": "^2.0.0",
+    "gulp-watch": "^4.3.11",
+    "imagemin-pngquant": "^5.1.0",
+    "jquery": "^3.4.1",
+    "regenerator-runtime": "^0.13.5",
+    "webpack": "4",
+    "webpack-stream": "^5.2.1",
+    "${extDepName}": "${extDepVersion}"
+  }
+}

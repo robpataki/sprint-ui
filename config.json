@@ -1,0 +1,24 @@
+{
+  "ext": {
+    "nhsuk": {
+      "npm": {
+        "name": "nhsuk-frontend",
+        "version": "^3.0.4"
+      },
+      "paths": {
+        "root": "./node_modules/nhsuk-frontend/packages",
+        "assets": "./node_modules/nhsuk-frontend/packages/assets/**/*"
+      }
+    },
+    "govuk": {
+      "npm": {
+        "name": "govuk-frontend",
+        "version": "^3.6.0"
+      },
+      "paths": {
+        "root": "./node_modules/govuk",
+        "assets": "./node_modules/govuk/assets/**/*"
+      }
+    }
+  }
+}

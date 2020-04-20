@@ -193,9 +193,9 @@
 
 
   // Copies govuk assets from npm folder inside local assets folder
-  function copyNHSUKAssets() {
-    return gulp.src([PATHS.source.nhsukAssets])
-      .pipe(gulp.dest(PATHS.destination.nhsukAssets));
+  function copyDependencyAssets() {
+    return gulp.src([PATHS.source.dependencyAssets])
+      .pipe(gulp.dest(PATHS.destination.dependencyAssets));
   }
 
 
@@ -229,7 +229,7 @@
   }
 
   /**************** Final exports ****************/
-  exports.assets = gulp.series(copyNHSUKAssets, processFonts, processImages);
+  exports.assets = gulp.series(copyDependencyAssets, processFonts, processImages);
   exports.styles = gulp.series(lintSass, cleanCSS, processSass);
   exports.scripts = gulp.series(lintJS, cleanJS , processAppJS);
   exports.build = gulp.series(
