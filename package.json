@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Test NPM package",
   "main": "index.js",
+  "private": true,
   "engines": {
     "node": "^10.0.0"
   },

@@ -1,0 +1,13 @@
+{
+  "name": "${name}",
+  "version": "1.0.0",
+  "description": "${description}",
+  "scripts": {
+    "start": "gulp",
+    "dev": "gulp -env=dev",
+    "build-dev": "gulp build -env=dev",
+    "build-prod": "gulp build"
+  },
+  "author": "${author}",
+  "license": "${licence}"
+}

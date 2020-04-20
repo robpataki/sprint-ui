@@ -1,0 +1,6 @@
+{
+  "thirdparty-deps": {
+    "guvuk-frontend": "^3.6.0",
+    "nhsuk-frontend": "^3.0.4"
+  }
+}
