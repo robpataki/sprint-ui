@@ -1,0 +1,23 @@
+{
+  "name": "toolkitten",
+  "version": "0.0.1",
+  "description": "Test NPM package",
+  "main": "index.js",
+  "engines": {
+    "node": "^10.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com:robertpataki/toolkitten.git"
+  },
+  "homepage": "https://www.npmjs.com/package/toolkitten",
+  "author": "Rob Pataki [robert@robertpataki.com]",
+  "license": "ISC",
+  "dependencies": {
+    "prompts": "^2.3.2",
+    "yargs": "^15.3.1"
+  }
+}
