@@ -5,15 +5,18 @@
   'use strict';
 
   const CURR_DIR = process.cwd();
-  const TEST_DIR = `${CURR_DIR}/test`;
+  const WORK_DIR = `${CURR_DIR}`;
+
+  const CONFIG = require('./config.json');
   
+  const util = require('util');
   const fs = require('fs');
   const fse = require('fs-extra');
   const prompts = require('prompts');
   prompts.override(require('yargs').argv);
 
-  const CONFIG = require('./config.json');
- 
+  const { exec } = require('child_process');
+
   (async () => {
     const response = await prompts([
       {
@@ -51,7 +54,7 @@
       case 'govuk':
       case 'nhsuk':
         projectConfig.type = 'ext';
-        projectConfig.ext = response.frontEndLib;
+        projectConfig.extType = response.frontEndLib;
         projectConfig.package = `${response.frontEndLib}-frontend`;
         projectConfig.descNotes = ` using the ${response.frontEndLib === 'nhsuk' ? 'NHSUK' : 'GOVUK'} front-end toolkit`;
         break;
@@ -66,39 +69,47 @@
     
     // Update the working file contents
     updateProjectFiles(projectConfig);
+
+    // Finish the installation
+    postInstall();
   })();
 
   function createProjectFiles(config) {
     // Copy everything
-    fse.copySync(`${__dirname}/templates/`, `${TEST_DIR}/`);
+    fse.copySync(`${__dirname}/templates/`, `${WORK_DIR}/`);
 
     // Then delete the obsolete files
-    fse.removeSync(`${TEST_DIR}/projects`);
+    fse.removeSync(`${WORK_DIR}/projects`);
+    fse.removeSync(`${WORK_DIR}/yarn.lock`);
 
-    const projectFiles = [
-      `${TEST_DIR}/gulpfile-[XXX].js`,
-      `${TEST_DIR}/lib/config-[XXX].js`,
-      `${TEST_DIR}/package-[XXX].json`
+    const projectConfigFiles = [
+      `${WORK_DIR}/gulpfile-[XXX].js`,
+      `${WORK_DIR}/lib/config-[XXX].js`,
+      `${WORK_DIR}/package-[XXX].json`
     ];
     const obsoleteType = config.type === 'vanilla' ? 'ext' : 'vanilla';
 
-    // Remove the obsolete project files
-    projectFiles.forEach((item) => {
+    // Remove the obsolete config files
+    projectConfigFiles.forEach((item) => {
       const filePath = item.replace('[XXX]', obsoleteType);
       fse.removeSync(filePath);
     });
 
-    // Rename the project files we will use
-    projectFiles.forEach((item) => {
+    // Rename the config files we will use
+    projectConfigFiles.forEach((item) => {
       const oldFilePath = item.replace('[XXX]', config.type);
       const newFilePath = item.replace('-[XXX]', '');
       fse.moveSync(oldFilePath, newFilePath, {overwrite: true});
     });
+
+    // Copy project folder
+    const projectFolder = config.type === 'vanilla' ? `vanilla` : `ext/${config.extType}`;
+    fse.copySync(`${__dirname}/templates/projects/${projectFolder}`, `${WORK_DIR}/src`);
   }
 
   function updateProjectFiles(config) {
     // Package.json
-    let content = fs.readFileSync(`${TEST_DIR}/package.json`, 'utf8');
+    let content = fs.readFileSync(`${WORK_DIR}/package.json`, 'utf8');
     content = content.replace('${name}', config.name);
     content = content.replace('${description}', config.description);
     content = content.replace('${descNotes}', config.descNotes);
@@ -106,17 +117,23 @@
     content = content.replace('${licence}', config.licence);
 
     if (config.type === 'ext') {
-      content = content.replace('${extDepName}', CONFIG.ext[config.ext].npm.name);
-      content = content.replace('${extDepVersion}', CONFIG.ext[config.ext].npm.version);
+      content = content.replace('${extDepName}', CONFIG.ext[config.extType].npm.name);
+      content = content.replace('${extDepVersion}', CONFIG.ext[config.extType].npm.version);
     }
 
-    fs.writeFileSync(`${TEST_DIR}/package.json`, content, 'utf8');
+    fs.writeFileSync(`${WORK_DIR}/package.json`, content, 'utf8');
 
     if (config.type === 'ext') {
       // Config.js
-      content = fs.readFileSync(`${TEST_DIR}/lib/config.js`, 'utf8');
-      content = content.replace('${dependencyAssets}', CONFIG.ext[config.ext].paths.assets);
-      fs.writeFileSync(`${TEST_DIR}/lib/config.js`, content, 'utf8');
+      content = fs.readFileSync(`${WORK_DIR}/lib/config.js`, 'utf8');
+      content = content.replace('${dependencyRoot}', CONFIG.ext[config.extType].paths.root);
+      content = content.replace('${dependencyAssets}', CONFIG.ext[config.extType].paths.assets);
+      fs.writeFileSync(`${WORK_DIR}/lib/config.js`, content, 'utf8');
     }
+  }
+
+  function postInstall() {
+    // const { exec } = require('child_process');
+    // exec('yarn && yarn run dev', (err) => { console.log('postInstall error: ', err); });
   }
 })();

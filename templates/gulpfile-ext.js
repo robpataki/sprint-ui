@@ -67,7 +67,7 @@
       .pipe(nunjucksRender({
         path: [
           PATHS.source.nunjucks,
-          './node_modules/nhsuk-frontend/packages'
+          PATHS.source.dependencyRoot
         ],
         autoescape: true,
         data: {}

@@ -66,8 +66,7 @@
     return gulp.src(PATHS.source.htmlPages)
       .pipe(nunjucksRender({
         path: [
-          PATHS.source.nunjucks,
-          './node_modules/nhsuk-frontend/packages'
+          PATHS.source.nunjucks
         ],
         autoescape: true,
         data: {}
@@ -192,13 +191,6 @@
   }
 
 
-  // Copies govuk assets from npm folder inside local assets folder
-  function copyDependencyAssets() {
-    return gulp.src([PATHS.source.dependencyAssets])
-      .pipe(gulp.dest(PATHS.destination.dependencyAssets));
-  }
-
-
   /**************** Watch tasks ****************/
   function watchFiles(done) {
     // Only watch for file changes in `development` mode
@@ -229,7 +221,7 @@
   }
 
   /**************** Final exports ****************/
-  exports.assets = gulp.series(copyDependencyAssets, processFonts, processImages);
+  exports.assets = gulp.series(processFonts, processImages);
   exports.styles = gulp.series(lintSass, cleanCSS, processSass);
   exports.scripts = gulp.series(lintJS, cleanJS , processAppJS);
   exports.build = gulp.series(

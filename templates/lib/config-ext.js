@@ -13,7 +13,8 @@ module.exports = (() => {
       htmlPages: `${SOURCE_PATH}/html/pages/**/*.+(html|nunjucks|njk)`,
       html: `${SOURCE_PATH}/html/**/*.+(html|nunjucks|njk)`,
       nunjucks: `${SOURCE_PATH}/html/templates`,
-      dependencyAssets: `${dependencyAssets}`
+      dependencyAssets: `${dependencyAssets}`,
+      dependencyRoot: `${dependencyRoot}`
     },
 
     destination: {
