@@ -12,9 +12,9 @@ module.exports = (() => {
       images: `${SOURCE_PATH}/assets/images/**/*.*`,
       htmlPages: `${SOURCE_PATH}/html/pages/**/*.+(html|nunjucks|njk)`,
       html: `${SOURCE_PATH}/html/**/*.+(html|nunjucks|njk)`,
-      nunjucks: `${SOURCE_PATH}/html/templates`,
-      dependencyAssets: `${dependencyAssets}`,
-      dependencyRoot: `${dependencyRoot}`
+      nunjucks: `${SOURCE_PATH}/html`,
+      frontEndLibRoot: `${frontEndLibRoot}`,
+      frontEndLibAssets: `${frontEndLibAssets}`
     },
 
     destination: {
@@ -22,9 +22,10 @@ module.exports = (() => {
       css: `${DESTINATION_PATH}/assets/css`,
       fonts: `${DESTINATION_PATH}/assets/fonts`,
       js: `${DESTINATION_PATH}/assets/js`,
+      appJSFileName: `application.js`,
       images: `${DESTINATION_PATH}/assets/images`,
       html: `${DESTINATION_PATH}`,
-      dependencyAssets: `${DESTINATION_PATH}/assets`
+      frontEndLibAssets: `${DESTINATION_PATH}/assets`
     }
   };
 

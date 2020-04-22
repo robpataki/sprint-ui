@@ -16,8 +16,8 @@
         "version": "^3.6.0"
       },
       "paths": {
-        "root": "./node_modules/govuk",
-        "assets": "./node_modules/govuk/assets/**/*"
+        "root": "./node_modules/govuk-frontend",
+        "assets": "./node_modules/govuk-frontend/govuk/assets/**/*"
       }
     }
   }

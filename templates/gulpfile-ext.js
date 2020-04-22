@@ -67,7 +67,7 @@
       .pipe(nunjucksRender({
         path: [
           PATHS.source.nunjucks,
-          PATHS.source.dependencyRoot
+          PATHS.source.frontEndLibRoot
         ],
         autoescape: true,
         data: {}
@@ -161,7 +161,7 @@
       .pipe(webpackStream({
         mode: env.IS_PROD ? 'production' : 'development',
         output: {
-          filename: 'application.js'
+          filename: PATHS.destination.appJSFileName
         },
         plugins: [
           new webpackStream.webpack.ProvidePlugin({
@@ -193,9 +193,9 @@
 
 
   // Copies govuk assets from npm folder inside local assets folder
-  function copyDependencyAssets() {
-    return gulp.src([PATHS.source.dependencyAssets])
-      .pipe(gulp.dest(PATHS.destination.dependencyAssets));
+  function copyFrontEndLibAssets() {
+    return gulp.src([PATHS.source.frontEndLibAssets])
+      .pipe(gulp.dest(PATHS.destination.frontEndLibAssets));
   }
 
 
@@ -218,7 +218,7 @@
       // Middleware to handle errors
       (err, bs) => {
         bs.addMiddleware("*", (req, res) => {
-          const errorHTMLFile = fs.readFileSync(path.join(PATHS.destination.root, 'error.html'));
+          const errorHTMLFile = fs.readFileSync(path.join(PATHS.destination.root, '404.html'));
           res.write(errorHTMLFile);
           res.writeHead(404);
           res.end();
@@ -229,7 +229,7 @@
   }
 
   /**************** Final exports ****************/
-  exports.assets = gulp.series(copyDependencyAssets, processFonts, processImages);
+  exports.assets = gulp.series(copyFrontEndLibAssets, processFonts, processImages);
   exports.styles = gulp.series(lintSass, cleanCSS, processSass);
   exports.scripts = gulp.series(lintJS, cleanJS , processAppJS);
   exports.build = gulp.series(

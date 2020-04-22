@@ -3,78 +3,97 @@
 (() => {
 
   'use strict';
-
-  const CURR_DIR = process.cwd();
-  const WORK_DIR = `${CURR_DIR}`;
-
-  const CONFIG = require('./config.json');
   
+  // Import dependencies
   const util = require('util');
   const fs = require('fs');
   const fse = require('fs-extra');
   const prompts = require('prompts');
   prompts.override(require('yargs').argv);
 
-  const { exec } = require('child_process');
+  // Import config file
+  const CONFIG = require('./config.json');
 
-  (async () => {
-    const response = await prompts([
-      {
-        type: 'text',
-        name: 'appName',
-        message: 'Application name'
-      }, {
-        type: 'text',
-        name: 'authorName',
-        message: 'Author name'
-      }, {
-        type: 'text',
-        name: 'authorEmail',
-        message: 'Author email'
-      }, {
-        type: 'select',
-        name: 'frontEndLib',
-        message: 'Select front-end library',
-        choices: [
-          { title: 'GOV.UK front-end', value: 'govuk' },
-          { title: 'NHS.UK front-end', value: 'nhsuk' },
-          { title: 'Vanilla, I want to start fresh!', value: 'vanilla' }
-        ],
-      }
-    ]);
-   
-    let projectConfig = {
-      name: response.appName || 'my-awesome-app',
-      author: (response.authorName || '') + (response.authorEmail ? ` <${response.authorEmail}>` : ''),
-      description: 'Static site and asset generator${descNotes}. Built with the power of Gulp 4, Webpack 4, Babel 7, Node Sass and Nunjucks.',
-      licence: 'MIT'
-    };
+  // Local constants
+  const TOTAL_STEPS = 3;
+  const CURR_DIR = process.cwd();
+  const WORK_DIR = `${CURR_DIR}`;
 
-    switch (response.frontEndLib) {
-      case 'govuk':
-      case 'nhsuk':
-        projectConfig.type = 'ext';
-        projectConfig.extType = response.frontEndLib;
-        projectConfig.package = `${response.frontEndLib}-frontend`;
-        projectConfig.descNotes = ` using the ${response.frontEndLib === 'nhsuk' ? 'NHSUK' : 'GOVUK'} front-end toolkit`;
-        break;
-      default:
-        projectConfig.type = 'vanilla';
-        projectConfig.descNotes = '';
-        break;
-    }
+  // Generate project config based on user input from prompts
+  function getProjectConfig() {
+    return new Promise((resolve, reject) => {      
+      (async () => {
+        const questions = [
+          {
+            type: 'text',
+            name: 'appName',
+            message: 'Enter application name',
+            validate: name => name.match(/^[a-z0-9\_\-]*$/g) === null ? 'Application name can only contain lowercase letters; numbers; `-` and `_`.' : true
+          }, {
+            type: 'text',
+            name: 'authorName',
+            message: 'Enter author\'s name'
+          }, {
+            type: 'select',
+            name: 'frontEndLib',
+            message: 'Select Front-end library to use',
+            choices: [
+              { title: 'GOV.UK front-end', value: 'govuk' },
+              { title: 'NHS.UK front-end', value: 'nhsuk' },
+              { title: 'Vanilla, I want to start fresh!', value: 'vanilla' }
+            ]
+          }, {
+            type: 'select',
+            name: 'packageManager',
+            message: 'Select your preferred package manager',
+            choices: [
+              { title: 'Yarn', value: 'yarn' },
+              { title: 'NPM', value: 'npm' }
+            ]
+          }
+        ];
 
-    // Prepare the working folder with the necessary folders and files
-    createProjectFiles(projectConfig);
-    
-    // Update the working file contents
-    updateProjectFiles(projectConfig);
+        const onCancel = (prompt) => {
+          reject('Project creation interrupted. No kittens were harmed!');
+          return false;
+        };
 
-    // Finish the installation
-    postInstall();
-  })();
+        const response = await prompts(questions, { onCancel });
+       
+        let config = {
+          name: response.appName || 'my-awesome-app',
+          author: response.authorName || '',
+          description: 'Static site and asset generator${descNotes}. Built with the power of Gulp 4, Webpack 4, Babel 7, Node Sass and Nunjucks.',
+          licence: 'MIT',
+          packageManager: response.packageManager
+        };
 
-  function createProjectFiles(config) {
+        switch (response.frontEndLib) {
+          case 'govuk':
+          case 'nhsuk':
+            config.type = 'ext';
+            config.extType = response.frontEndLib;
+            config.package = `${response.frontEndLib}-frontend`;
+            config.descNotes = ` using the ${response.frontEndLib === 'nhsuk' ? 'NHSUK' : 'GOVUK'} front-end toolkit`;
+            break;
+          default:
+            config.type = 'vanilla';
+            config.descNotes = '';
+            break;
+        }
+
+        resolve(config);
+      })();
+    });
+  }
+
+  /* 
+    Copy appropriate project files from the templates based 
+    on project type selected by the user
+  */
+  function copyProjectFiles(config) {
+    log(`Step 1/${TOTAL_STEPS}: Creating project files...`);
+
     // Copy everything
     fse.copySync(`${__dirname}/templates/`, `${WORK_DIR}/`);
 
@@ -105,9 +124,15 @@
     // Copy project folder
     const projectFolder = config.type === 'vanilla' ? `vanilla` : `ext/${config.extType}`;
     fse.copySync(`${__dirname}/templates/projects/${projectFolder}`, `${WORK_DIR}/src`);
+    log(`Step 1/${TOTAL_STEPS}: 💥`);
   }
 
-  function updateProjectFiles(config) {
+  /* 
+    Set up project files based on project type selected by the user
+  */
+  function setupProjectFiles(config) {
+    log(`Step 2/${TOTAL_STEPS}: Applying "${config.type.toUpperCase()}" config...`);
+
     // Package.json
     let content = fs.readFileSync(`${WORK_DIR}/package.json`, 'utf8');
     content = content.replace('${name}', config.name);
@@ -126,14 +151,43 @@
     if (config.type === 'ext') {
       // Config.js
       content = fs.readFileSync(`${WORK_DIR}/lib/config.js`, 'utf8');
-      content = content.replace('${dependencyRoot}', CONFIG.ext[config.extType].paths.root);
-      content = content.replace('${dependencyAssets}', CONFIG.ext[config.extType].paths.assets);
+      content = content.replace('${frontEndLibRoot}', CONFIG.ext[config.extType].paths.root);
+      content = content.replace('${frontEndLibAssets}', CONFIG.ext[config.extType].paths.assets);
       fs.writeFileSync(`${WORK_DIR}/lib/config.js`, content, 'utf8');
     }
+    log(`Step 2/${TOTAL_STEPS}: 💥`);
   }
 
-  function postInstall() {
-    // const { exec } = require('child_process');
-    // exec('yarn && yarn run dev', (err) => { console.log('postInstall error: ', err); });
+  /* 
+    Install NPM dependencies from the new project's package.json file
+  */
+  function installDependencies(config) {
+    log(`Step 3/${TOTAL_STEPS}: Installing project dependencies using ${config.packageManager}...`);
+    
+    const pmInstallCommand = config.packageManager === 'yarn' ? 'yarn' : 'npm install';
+    const child = require('child_process').exec(`${pmInstallCommand}`); 
+    child.stdout.on('data', (data) => {
+      console.log(data.toString());
+    });
+    child.stdout.on('close', () => {
+      log(`Step 3/${TOTAL_STEPS}: 💥`);
+      log(`Your new project is ready, go get get them 🐅!`);
+    });
   }
+
+  /* 
+    Log custom formatted messages
+  */
+  function log(message, severity) {
+    console.log(message);
+  }
+
+  getProjectConfig()
+  .then((config) => {
+      copyProjectFiles(config);
+      setupProjectFiles(config);
+      // installDependencies(config);
+  }, (error) => {
+    log(`Error: ${error}`);
+  });
 })();

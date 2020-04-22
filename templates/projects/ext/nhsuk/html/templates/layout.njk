@@ -1,3 +1,9 @@
+{% from 'components/header/macro.njk'         import header %}
+{% from 'components/footer/macro.njk'         import footer %}
+{% from 'components/skip-link/macro.njk'      import skipLink %}
+{% from 'components/action-link/macro.njk'    import actionLink %}
+{% from "components/details/macro.njk"        import details %}
+
 <!DOCTYPE html>
 <!--[if lt IE 9]><html class="ie8" lang="en"><![endif]--><!--[if IE 9]><html class="ie9" lang="en"><![endif]--><!--[if gt IE 9]><!--><html lang="en"><!--<![endif]-->
   <head>
@@ -5,9 +11,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <title>Statik site</title>
+    <title>Toolkit 10</title>
 
-		<link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://www.nhs.uk/" rel="preconnect">
+    <link href="https://assets.nhs.uk/" rel="preconnect" crossorigin>
+
+    <link type="font/woff2" href="https://assets.nhs.uk/fonts/FrutigerLTW01-55Roman.woff2" rel="preload" as="font" crossorigin>
+    <link type="font/woff2" href="https://assets.nhs.uk/fonts/FrutigerLTW01-65Bold.woff2" rel="preload" as="font" crossorigin>
+
+		<link rel="stylesheet" href="assets/css/main.css">
 
     <link rel="shortcut icon" href="assets/favicons/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="assets/favicons/apple-touch-icon-180x180.png">
@@ -22,14 +34,20 @@
 	</head>
 	<body>
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>  
-    
-    <a class="nhsuk-skip-link" href="#maincontent">Skip to main content</a>
 
-    {% if useBluePageHeader === true %}
-      {% include 'partials/header-blue.njk' %}
-    {% else %}
-      {% include 'partials/header.njk' %}
-    {% endif %}
+    {{ skipLink({
+      "href": "#maincontent",
+      "text": "Skip to main content"
+    }) }}
+
+    {{ header({
+      "service": {
+        "name": "This is not a real service",
+        "longName": "true"
+      },
+      "ariaLabel": "Toolkit 10 is not a real NHS service.",
+      "showSearch": "true"
+    }) }}
 
     <div class="nhsuk-width-container">
       <main class="nhsuk-main-wrapper " id="maincontent" role="main">
@@ -37,8 +55,15 @@
       </main>
     </div>
 
-    {% include 'partials/footer.njk' %}
+    {{ footer({
+      "links": [
+        {
+          "URL": "accessibility-statement",
+          "label": "Accessibility statement"
+        }
+      ]
+    }) }}
 
-    <script type="text/javascript" src="assets/js/application.js"></script>
+    <script type="text/javascript" src="assets/js/main.js"></script>
 	</body>
 </html>

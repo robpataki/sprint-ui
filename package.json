@@ -1,7 +1,7 @@
 {
-  "name": "toolkitten",
+  "name": "sprint-ui",
   "version": "0.0.1",
-  "description": "Test NPM package",
+  "description": "Blazing fast, production ready UI development kit for GOVUK, NHSUK or vanilla projects.",
   "main": "index.js",
   "private": true,
   "engines": {
@@ -15,9 +15,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com:robertpataki/toolkitten.git"
+    "url": "git+https://github.com:robertpataki/sprint-ui.git"
   },
-  "homepage": "https://www.npmjs.com/package/toolkitten",
+  "homepage": "https://www.npmjs.com/package/sprint-ui",
   "author": "Rob Pataki [robert@robertpataki.com]",
   "license": "ISC",
   "dependencies": {

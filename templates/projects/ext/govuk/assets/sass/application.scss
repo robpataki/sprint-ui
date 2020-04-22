@@ -1,0 +1,13 @@
+// Import GOV.UK frontend library
+@import "node_modules/govuk-frontend/govuk/all";
+
+// Components that are not in the GOV.UK frontend library
+@import "components/cookie-banner";
+
+// Patterns that are not in the GOV.UK frontend library
+@import "patterns/task-list";
+
+///////////////////////////////////////////
+// Add your custom Sass styles below... 
+///////////////////////////////////////////
+@import "config/reset";

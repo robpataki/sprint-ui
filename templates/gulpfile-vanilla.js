@@ -210,7 +210,7 @@
       // Middleware to handle errors
       (err, bs) => {
         bs.addMiddleware("*", (req, res) => {
-          const errorHTMLFile = fs.readFileSync(path.join(PATHS.destination.root, 'error.html'));
+          const errorHTMLFile = fs.readFileSync(path.join(PATHS.destination.root, '404.html'));
           res.write(errorHTMLFile);
           res.writeHead(404);
           res.end();

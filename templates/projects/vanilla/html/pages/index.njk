@@ -1,13 +1,11 @@
 {% set useBluePageHeader = true %}
 {% extends 'layout.njk' %}
 
-{% from 'components/action-link/macro.njk' import actionLink %}
-
 {% block content %}
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
       <h1 class="nhsuk-heading-l">
-          UI Toolkit
+          Toolkit 10
           <span class="nhsuk-caption-l nhsuk-caption--bottom">Prototype and build things better</span>
       </h1>
 
@@ -15,9 +13,8 @@
       <p>The project uses  <a href="https://gulpjs.com/">Gulp 4</a>, <a href="https://webpack.js.org/">Webpack 4</a>, <a href="https://github.com/sass/node-sass">Node SASS</a>, <a href="https://babeljs.io/docs/en/">Babel</a> to build production-ready front-end assets using the NHSUK or GOVUK front-end toolkit (or no toolkit at all if you just fancy vanilla 🍦).</p>
       <p>The project is also a static site gerenator - creating HTML pages from <a href="https://mozilla.github.io/nunjucks/templating.html">Nunjucks</a> templates, so it can be used for prototyping.</p>
 
-      {{ actionLink({
-        "text": "Find out more about this project",
-        "href": "https://github.com/valtech-uk/ui-toolkit"
-      }) }}
+      <p>
+        <img src="assets/images/judge-dredd.gif" alt="Dredd looking at flaming rubble"/>
+      </p>
   </div>
 {% endblock %}

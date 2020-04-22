@@ -1,0 +1,35 @@
+{% set pageName = 'Home' %}
+{% set shouldShowCookieMessage = true %}
+{% set cookieText = "GOV.UK uses cookies to make the site simpler. <a href=\"#\">Find out more about cookies</a>" %}
+
+{% extends "layouts/master-layout.njk" %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">{{ siteName }}</h1>
+      <p class="govuk-body-l">Let's hit the ground running! 👟👟</p>
+
+      <p class="govuk-body">The main scope of this project is to streamline traditional UI stack (<b>HTML + CSS + JS</b>) workflows and incorporate best practices for UI development when building <a href="https://service-manual.nhs.uk/design-system">NHSUK</a> or <a href="https://design-system.service.gov.uk/">GOVUK</a> digital services.</p>
+      
+      <p class="govuk-body">This project uses <a href="https://gulpjs.com/">Gulp 4</a>, <a href="https://webpack.js.org/">Webpack 4</a>, <a href="https://github.com/sass/node-sass">Node SASS</a>, <a href="https://babeljs.io/docs/en/">Babel</a> to build production-ready front-end assets using the <a href="https://github.com/nhsuk/nhsuk-frontend">NHSUK</a> or <a href="https://github.com/alphagov/govuk-frontend">GOVUK</a> front-end toolkit - or no toolkit at all if you need a blank canvas for your project.</p>
+      
+      <div class="govuk-!-margin-top-7">
+        {{ govukButton({
+          "text": "Find out more about this project",
+          "href": "https://github.com/valtech-uk/ui-toolkit"
+        }) }}
+      </div>
+
+      <div class="govuk-!-margin-top-5">
+        <hr>
+        {{ govukWarningText({
+          text: "This is not the official GOVUK prototyping toolkit.",
+          iconFallbackText: "Warning"
+        }) }}
+
+        <p class="govuk-body">You can use this project to build or prototype a GOVUK service, but it is important to note that this is not the <a href="https://govuk-prototype-kit.herokuapp.com/docs">official GOVUK prototyping kit</a>, and it is <b>not</b> maintained by GDS.</p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
