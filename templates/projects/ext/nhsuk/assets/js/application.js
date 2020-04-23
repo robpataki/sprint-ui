@@ -3,6 +3,10 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
+// Import NHSUK modules
+import 'nhsuk-frontend/packages/nhsuk';
+
+// Import custom modules
 import todaysDate from './modules/todaysDate';
 
 // Expose $ on window

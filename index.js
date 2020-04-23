@@ -172,6 +172,7 @@
     child.stdout.on('close', () => {
       log(`Step 3/${TOTAL_STEPS}: 💥`);
       log(`Your new project is ready, go get get them 🐅!`);
+      log(`You can start building things by running "$ yarn run dev"`);
     });
   }
 
@@ -186,7 +187,7 @@
   .then((config) => {
       copyProjectFiles(config);
       setupProjectFiles(config);
-      // installDependencies(config);
+      installDependencies(config);
   }, (error) => {
     log(`Error: ${error}`);
   });

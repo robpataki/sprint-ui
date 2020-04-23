@@ -1,0 +1,11 @@
+{% set pageName = 'Page not found' %}
+{% extends "layouts/master-layout.njk" %}
+
+{% block heading %}
+  <h1 class="nhsuk-heading-xl">{{ pageName }}</h1>
+{% endblock %}
+
+{% block content %}
+  <p class="nhsuk-body">If you entered a web address please check it was correct.</p>
+  <p>Why not browse the <a href="https://www.nhs.uk/">NHS website homepage</a> to find services and information?</p>
+{% endblock %}

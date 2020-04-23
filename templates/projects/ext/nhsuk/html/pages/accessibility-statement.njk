@@ -1,22 +1,22 @@
-{% set useBluePageHeader = true %}
-{% extends 'layout.njk' %}
+{% set pageName = "Accessibility statement" %}
+
+{% extends "layouts/master-layout.njk" %}
+
+{% block heading %}
+  <h1 class="nhsuk-heading-xl">{{ pageName }}</h1>
+{% endblock %}
 
 {% block content %}
-  <div class="nhsuk-grid-row">
-    <div class="nhsuk-grid-column-two-thirds">
-      <h1 class="nhsuk-heading-l">Accessibility statement</h1>
+  <p class="nhsuk-body-l">Every new digital public service must have one <br> - <a href="https://medium.com/valtech-design/accessibility-for-everyone-making-public-service-websites-inclusive-has-become-a-legal-bb491dbb8ebf#e042">It is the law</a>.</p>
 
-      <h2 class="nhsuk-heading-m">Every new digital public service must have one <br> - <a href="https://medium.com/valtech-design/accessibility-for-everyone-making-public-service-websites-inclusive-has-become-a-legal-bb491dbb8ebf#e042">It is the law</a>.</h2>
+  <p class="nhsuk-body">
+    <img src="assets/images/judge-dredd.gif" alt="Flaming fire of rage and desctruction reflecting on Judge Dredd's helmet visor - he is not happy about your service lacking an accessibility statement!"/>
+  </p>
 
-      <p>
-        <img src="assets/images/judge-dredd.gif" alt="Flaming fire of rage and desctruction reflecting on Judge Dredd's helmet visor - he is not happy about your service lacking an accessibility statement!"/>
-      </p>
+  {{ details({
+    text: "Why accessibility is important",
+    HTML: "Efficiently extend robust synergy without equity invested channels. Collaboratively matrix mission-critical convergence before 24/7 bandwidth."
+  }) }}
 
-      {{ details({
-        text: "Why accessibility is important",
-        HTML: "Efficiently extend robust synergy without equity invested channels. Collaboratively matrix mission-critical convergence before 24/7 bandwidth."
-      }) }}
-
-      <p>To create an accessibility statement for your service, use the GDS <a href="https://www.gov.uk/government/publications/sample-accessibility-statement/sample-accessibility-statement-for-a-fictional-public-sector-website">sample accessibility statement</a>.</p>
-  </div>
+  <p class="nhsuk-body">To create an accessibility statement for your service, use the GDS <a href="https://www.gov.uk/government/publications/sample-accessibility-statement/sample-accessibility-statement-for-a-fictional-public-sector-website">sample accessibility statement</a>.</p>
 {% endblock %}

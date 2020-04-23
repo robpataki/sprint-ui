@@ -17,18 +17,23 @@
       <div class="govuk-!-margin-top-7">
         {{ govukButton({
           "text": "Find out more about this project",
-          "href": "https://github.com/valtech-uk/ui-toolkit"
+          "href": "https://github.com/robertpataki/sprint-ui"
         }) }}
       </div>
 
       <div class="govuk-!-margin-top-5">
         <hr>
         {{ govukWarningText({
-          text: "This is not the official GOVUK prototyping toolkit.",
-          iconFallbackText: "Warning"
+          "text": "This is not the official GOVUK prototyping toolkit.",
+          "iconFallbackText": "Warning"
         }) }}
 
         <p class="govuk-body">You can use this project to build or prototype a GOVUK service, but it is important to note that this is not the <a href="https://govuk-prototype-kit.herokuapp.com/docs">official GOVUK prototyping kit</a>, and it is <b>not</b> maintained by GDS.</p>
+      </div>
+
+      <div class="govuk-!-margin-top-5">
+        <hr>
+        <p class="govuk-body">(Oh, by the way, today's date is <span data-module="todays-date">...</span>)</p>
       </div>
     </div>
   </div>

@@ -1,21 +1,34 @@
-{% set useBluePageHeader = true %}
-{% extends 'layout.njk' %}
+{% set pageName = 'Home' %}
+
+{% extends "layouts/master-layout.njk" %}
+
+{% block heading %}
+  <h1 class="nhsuk-heading-xl">{{ siteName }}</h1>
+  <p class="nhsuk-body-l">Let's hit the ground running! 👟👟</p>
+{% endblock %}
 
 {% block content %}
-  <div class="nhsuk-grid-row">
-    <div class="nhsuk-grid-column-two-thirds">
-      <h1 class="nhsuk-heading-l">
-          Toolkit 10
-          <span class="nhsuk-caption-l nhsuk-caption--bottom">Prototype and build things better</span>
-      </h1>
+  <p class="nhsuk-body">The main scope of this project is to streamline traditional UI stack (<b>HTML + CSS + JS</b>) workflows and incorporate best practices for UI development when building <a href="https://service-manual.nhs.uk/design-system">NHSUK</a> or <a href="https://design-system.service.gov.uk/">GOVUK</a> digital services.</p>
+  
+  <p class="nhsuk-body">This project uses <a href="https://gulpjs.com/">Gulp 4</a>, <a href="https://webpack.js.org/">Webpack 4</a>, <a href="https://github.com/sass/node-sass">Node SASS</a>, <a href="https://babeljs.io/docs/en/">Babel</a> to build production-ready front-end assets using the <a href="https://github.com/nhsuk/nhsuk-frontend">NHSUK</a> or <a href="https://github.com/alphagov/govuk-frontend">GOVUK</a> front-end toolkit - or no toolkit at all if you need a blank canvas for your project.</p>
+  
+  <div class="nhsuk-u-margin-top-7">
+    {{ actionLink({
+      "text": "Find out more about this project",
+      "href": "https://github.com/robertpataki/sprint-ui"
+    }) }}
+  </div>
 
-      <p>The main scope of this project is to streamline traditional UI stack (<b>HTML + CSS + JS</b>) workflows and incorporate best practices for both UI development and UX research when building <a href="https://service-manual.nhs.uk/design-system">NHSUK</a> or <a href="https://design-system.service.gov.uk/">GOVUK</a> digital services.</p>
-      <p>The project uses  <a href="https://gulpjs.com/">Gulp 4</a>, <a href="https://webpack.js.org/">Webpack 4</a>, <a href="https://github.com/sass/node-sass">Node SASS</a>, <a href="https://babeljs.io/docs/en/">Babel</a> to build production-ready front-end assets using the NHSUK or GOVUK front-end toolkit (or no toolkit at all if you just fancy vanilla 🍦).</p>
-      <p>The project is also a static site gerenator - creating HTML pages from <a href="https://mozilla.github.io/nunjucks/templating.html">Nunjucks</a> templates, so it can be used for prototyping.</p>
+  <div class="nhsuk-u-margin-top-5">
+    <hr>
+    {{ warningCallout({
+      "heading": "This is not the official NHSUK prototyping toolkit.",
+      "HTML": '<p class="nhsuk-body">You can use this project to build or prototype a NHSUK service, but it is important to note that this is not the <a href="https://nhsuk-prototype-kit.azurewebsites.net/docs">official NHSUK prototyping kit</a>, and it is <b>not</b> maintained by GDS.</p>'
+    }) }}
+  </div>
 
-      {{ actionLink({
-        "text": "Find out more about this project",
-        "href": "https://github.com/valtech-uk/ui-toolkit"
-      }) }}
+  <div class="nhsuk-u-margin-top-5">
+    <hr>
+    <p class="nhsuk-body">(Oh, by the way, today's date is <span data-module="todays-date">...</span>)</p>
   </div>
 {% endblock %}

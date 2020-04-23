@@ -3,7 +3,10 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
+// Import NHSUK modules
 import govukAll from 'govuk-frontend/govuk/all';
+
+// Import custom modules
 import todaysDate from './modules/todaysDate';
 
 // Expose $ on window
