@@ -43,9 +43,10 @@ A third - vanilla project is coming soon.
 ## ❯❯❯ Roadmap
 
 - Document everything
-- Add tests
+- Add project asset revving
+- Add NPM package tests
 - Add Vanilla project templates
-- Make the project generation logs pretty
+- Make the project generation logs pretty and <span style="background: black">&nbsp;<i style="color:yellow">c</i><i style="color:red">o</i><i style="color:green">l</i><i style="color:orange">o</i><i style="color:pink">u</i><i style="color:grey">r</i><i style="color:magenta">f</i><i style="color:lightblue">u</i><i style="color:lightgreen">l</i>&nbsp;</span>
 
 
 
