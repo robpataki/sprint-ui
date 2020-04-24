@@ -39,8 +39,8 @@
             message: 'Select Front-end library to use',
             choices: [
               { title: 'GOV.UK front-end', value: 'govuk' },
-              { title: 'NHS.UK front-end', value: 'nhsuk' },
-              { title: 'Vanilla, I want to start fresh!', value: 'vanilla' }
+              { title: 'NHS.UK front-end', value: 'nhsuk' }/*,
+              { title: 'Vanilla, I want to start fresh!', value: 'vanilla' }*/
             ]
           }, {
             type: 'select',

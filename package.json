@@ -8,7 +8,7 @@
     "node": "^10.0.0"
   },
   "bin": {
-    "generate": "./index.js"
+    "sprint-ui": "./index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
