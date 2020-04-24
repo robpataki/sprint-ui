@@ -2,7 +2,7 @@
   "name": "sprint-ui",
   "version": "0.0.2",
   "description": "Blazing fast, production ready UI development kit for GOVUK, NHSUK or vanilla projects.",
-  "keywords": "nhs nhsuk govuk html css js static site-generator",
+  "keywords": "nhs, nhsuk, govuk, html, css, js, static, site-generator",
   "main": "index.js",
   "engines": {
     "node": "^10.0.0"
