@@ -2,6 +2,10 @@
 
 Blazing fast, production ready UI development kit for GOVUK, NHSUK or vanilla projects.
 
+## ❯❯❯ Disclaimer
+
+This is an experimental and work in progress package, please use it with caution. As soon as I learn how to do NPM properly, I'll add tests and proper documentation.
+
 ## ❯❯❯ Install
 
 ```
@@ -17,6 +21,10 @@ $ mkdir my-sprint-ui-project
 $ cd my-sprint-ui-project
 $ sprint-ui
 ```
+
+The `sprint-ui` command will write project files into the new project folder.
+
+> Please note that the project will not check if the folder is empty, and will copy the files regardless. The project generation process can be stopped at any point before the last step (step 3). **The generator will not delete existing files in the folder it is called from - this is to avoid any accitental data loss.**
 
 Once your project is installed, you will get a fully structured, ready to go static website, which you can start developing using
 
