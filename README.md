@@ -6,6 +6,10 @@ Blazing fast, production ready UI development kit for GOVUK, NHSUK or vanilla pr
 
 This is an experimental and work in progress package, please use it with caution. As soon as I learn how to do NPM properly, I'll add tests and proper documentation.
 
+## ❯❯❯ Requirements
+
+The project requries NodeJS 10 or newer.
+
 ## ❯❯❯ Install
 
 ```

@@ -20,6 +20,10 @@ If you need any help with the components or the templating, just refer to the of
 - **GovUK Design System - Components:** [https://design-system.service.gov.uk/components](https://design-system.service.gov.uk/components/)
 - **NHSUK Design System - Components:** [https://service-manual.nhs.uk/design-system/components](https://service-manual.nhs.uk/design-system/components)
 
+## ❯❯❯ Requirements
+
+The project requries NodeJS 10 or newer.
+
 ## ❯❯❯ Demo 
 
 [https://statik-ui.herokuapp.com/](https://statik-ui.herokuapp.com/)
