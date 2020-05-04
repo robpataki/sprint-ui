@@ -143,4 +143,4 @@ If you see a Gulp error caused by `jpegtran`, just rebuild the binary:
 - Tidy up the Gulp file
 - Enable the direct use of underlying (NHSUK) front-end toolkit macros and other resources ✅
 - Add data and routing to the server
-- Add setup script, so that the developer can chose between GOVU and NHSUK design system
+- Add setup script, so that the developer can chose between GOVUK and NHSUK design system
