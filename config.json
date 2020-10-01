@@ -3,7 +3,7 @@
     "nhsuk": {
       "npm": {
         "name": "nhsuk-frontend",
-        "version": "^3.0.4"
+        "version": "^3.1.0"
       },
       "paths": {
         "root": "./node_modules/nhsuk-frontend/packages",
@@ -13,7 +13,7 @@
     "govuk": {
       "npm": {
         "name": "govuk-frontend",
-        "version": "^3.6.0"
+        "version": "^3.9.1"
       },
       "paths": {
         "root": "./node_modules/govuk-frontend",

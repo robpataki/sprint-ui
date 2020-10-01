@@ -24,12 +24,22 @@ If you need any help with the components or the templating, just refer to the of
 
 The project requries NodeJS 10 or newer.
 
-## ❯❯❯ Demo 
+## ❯❯❯ Live Demo
 
-[https://statik-ui.herokuapp.com/](https://statik-ui.herokuapp.com/)
+### NHSUK static demo site
+[https://sprint-ui-nhsuk.herokuapp.com/](https://sprint-ui-nhsuk.herokuapp.com/)
 
+### GOVUK static demo site
+[https://sprint-ui-govuk.herokuapp.com/](https://sprint-ui-govuk.herokuapp.com/)
+
+### Vanilla static demo site
+Coming soon
+
+#### The credentials for the demo sites are
 - **USERNAME:** bruceWayne
 - **PASSWORD:** iWearTights
+
+Public Git repositories of these sites are also available at [https://github.com/robertpataki/sprint-ui-nhsuk](https://github.com/robertpataki/sprint-ui-nhsuk) and [https://github.com/robertpataki/sprint-ui-govuk](https://github.com/robertpataki/sprint-ui-govuk) - respectively.
 
 ## ❯❯❯ Production-ready asset generation
 
@@ -145,6 +155,7 @@ If you see a Gulp error caused by `jpegtran`, just rebuild the binary:
 - Configure ESLint using sensible defaults
 - Clean up NPM dependencies ✅
 - Tidy up the Gulp file
+- Make sure template .gitignore file is created in the new project
 - Enable the direct use of underlying (NHSUK) front-end toolkit macros and other resources ✅
 - Add data and routing to the server
 - Add setup script, so that the developer can chose between GOVUK and NHSUK design system
